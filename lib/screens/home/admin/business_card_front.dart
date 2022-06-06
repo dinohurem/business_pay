@@ -50,7 +50,7 @@ class _BusinessCardFrontState extends State<BusinessCardFront> {
           height: SizeConfig.safeBlockVertical! * 2,
         ),
         Container(
-          height: SizeConfig.safeBlockVertical! * 28,
+          height: SizeConfig.safeBlockVertical! * 27,
           decoration: BoxDecoration(
             gradient: const LinearGradient(
               begin: Alignment.topRight,

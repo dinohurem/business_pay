@@ -2,8 +2,11 @@
 
 import 'package:business_pay/models/card.dart';
 import 'package:business_pay/models/transaction.dart';
+import 'package:business_pay/models/user.dart';
 import 'package:business_pay/screens/home/admin/business_card_back.dart';
 import 'package:business_pay/screens/home/admin/business_card_front.dart';
+import 'package:business_pay/screens/home/admin/profile.dart';
+import 'package:business_pay/screens/home/admin/transaction_record.dart';
 import 'package:business_pay/size_config.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +27,13 @@ class _AdminHomeState extends State<AdminHome> {
   double alignment = 0;
   double bannerHeight = 400;
   final scrollDuration = const Duration(seconds: 1);
+
+  final user = User(
+      username: 'nejrajerlagic',
+      email: 'nejrajerlagic@gmail.com',
+      gender: 'female',
+      phone: '+38762123456');
+
   final cards = [
     CreditCard(
       enabled: true,
@@ -74,31 +84,19 @@ class _AdminHomeState extends State<AdminHome> {
       limit: 10000,
       transactions: [
         Transaction(
-          company: 'Petrol BIH Oil Company',
-          amount: 100,
+          company: 'Test 2 Company',
+          amount: 500,
           type: 'oil',
           date: DateTime.now(),
         ),
         Transaction(
-          company: 'Barsa restoran',
-          amount: 150,
+          company: 'Barsa 2 restoran',
+          amount: 330,
           type: 'food',
           date: DateTime.now(),
         ),
         Transaction(
-          company: 'INNA petrol company',
-          amount: 250,
-          type: 'oil',
-          date: DateTime.now(),
-        ),
-        Transaction(
-          company: 'INNA petrol company',
-          amount: 250,
-          type: 'oil',
-          date: DateTime.now(),
-        ),
-        Transaction(
-          company: 'INNA petrol company',
+          company: 'INNA 2 petrol company',
           amount: 250,
           type: 'oil',
           date: DateTime.now(),
@@ -114,31 +112,31 @@ class _AdminHomeState extends State<AdminHome> {
       limit: 10000,
       transactions: [
         Transaction(
-          company: 'Petrol BIH Oil Company',
+          company: 'JAMES BOND COMPANY',
           amount: 100,
           type: 'oil',
           date: DateTime.now(),
         ),
         Transaction(
-          company: 'Barsa restoran',
+          company: 'Barsa 3 restoran',
           amount: 150,
           type: 'food',
           date: DateTime.now(),
         ),
         Transaction(
-          company: 'INNA petrol company',
+          company: 'INNA 3 petrol company',
           amount: 250,
           type: 'oil',
           date: DateTime.now(),
         ),
         Transaction(
-          company: 'INNA petrol company',
+          company: 'INNA 3 petrol company',
           amount: 250,
           type: 'oil',
           date: DateTime.now(),
         ),
         Transaction(
-          company: 'INNA petrol company',
+          company: 'INNA 3 petrol company',
           amount: 250,
           type: 'oil',
           date: DateTime.now(),
@@ -194,10 +192,22 @@ class _AdminHomeState extends State<AdminHome> {
                 ),
               ),
               actions: [
-                CircleAvatar(
-                  radius: SizeConfig.safeBlockHorizontal! * 6,
-                  backgroundImage: const AssetImage(
-                    'assets/images/avatar.png',
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Profile(
+                          user: user,
+                        ),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: SizeConfig.safeBlockHorizontal! * 6,
+                    backgroundImage: const AssetImage(
+                      'assets/images/avatar.png',
+                    ),
                   ),
                 )
               ],
@@ -392,23 +402,86 @@ class _AdminHomeState extends State<AdminHome> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: SizeConfig.safeBlockVertical! * 2,
+                  padding: EdgeInsets.only(
+                    top: SizeConfig.safeBlockVertical! * 2,
                   ),
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: cards[currentCardIndex].transactions.length * 3,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          color: Colors.red,
-                          height: SizeConfig.safeBlockVertical! * 3,
-                          width: SizeConfig.safeBlockHorizontal! * 5,
+                  child: Container(
+                    color: Colors.white,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: SizeConfig.safeBlockVertical! * 3,
+                          horizontal: SizeConfig.safeBlockHorizontal! * 3,
                         ),
-                      );
-                    },
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: SizeConfig.safeBlockVertical! * 5,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      SizeConfig.safeBlockHorizontal! * 2,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Transactions',
+                                      style: TextStyle(
+                                        fontSize:
+                                            SizeConfig.safeBlockVertical! * 3,
+                                        fontWeight: FontWeight.bold,
+                                        color: const Color.fromARGB(
+                                            255, 7, 86, 139),
+                                      ),
+                                    ),
+                                    Icon(
+                                      Icons.calendar_month_sharp,
+                                      color:
+                                          const Color.fromARGB(255, 7, 86, 139),
+                                      size: SizeConfig.safeBlockVertical! * 6,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: SizeConfig.safeBlockVertical! * 3,
+                            ),
+                            SizedBox(
+                              height: SizeConfig.safeBlockVertical! * 25,
+                              child: ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemCount:
+                                    cards[currentCardIndex].transactions.length,
+                                scrollDirection: Axis.vertical,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          SizeConfig.safeBlockHorizontal! * 3,
+                                      vertical: SizeConfig.safeBlockVertical!,
+                                    ),
+                                    child: TransactionRecord(
+                                      transaction: cards[currentCardIndex]
+                                          .transactions[index],
+                                      color: index % 2 == 0
+                                          ? Colors.red
+                                          : Colors.purple,
+                                      icon: index % 2 == 0
+                                          ? Icons.local_gas_station
+                                          : Icons.restaurant,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               )
