@@ -205,206 +205,222 @@ class _AdminHomeState extends State<AdminHome> {
           ),
         ),
         body: SizedBox(
-          height: SizeConfig.safeBlockVertical! * 92,
-          child: SizedBox(
-            height: SizeConfig.safeBlockVertical! * 75,
+          height: SizeConfig.safeBlockVertical! * 100,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: SizeConfig.safeBlockHorizontal! * 3,
+              vertical: SizeConfig.safeBlockVertical! * 2,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: SizeConfig.safeBlockVertical! * 34,
-                        child: ScrollablePositionedList.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: cards.length,
-                          itemScrollController: itemScrollController,
-                          itemPositionsListener: itemPositionsListener,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: SizeConfig.safeBlockHorizontal! * 2,
-                              ),
-                              child: SizedBox(
-                                width: SizeConfig.safeBlockHorizontal! * 82,
-                                child: FlipCard(
-                                  direction: FlipDirection.HORIZONTAL,
-                                  speed: 500,
-                                  onFlipDone: (status) {
-                                    print(status ? 'front' : 'back');
-                                  },
-                                  front: BusinessCardFront(
-                                    index: index,
-                                    enabled: true,
-                                    favorite: true,
-                                    cardNumber: '4111 1111 1111 1111',
-                                    cardHolder: 'GOLDEN SKY',
-                                    nextCardFunction: (index) {
-                                      scrollTo(index == cards.length - 1
-                                          ? index
-                                          : index + 1);
-                                    },
-                                    previousCardFunction: (index) {
-                                      scrollTo(index == 0 ? index : index - 1);
-                                    },
-                                  ),
-                                  back: BusinessCardBack(
-                                    enabled: true,
-                                    favorite: true,
-                                    cardNumber: 'XXXX-4321',
-                                    cardHolder: 'GOLDEN SKY',
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical! * 34,
+                  child: ScrollablePositionedList.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: cards.length,
+                    itemScrollController: itemScrollController,
+                    itemPositionsListener: itemPositionsListener,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: SizeConfig.safeBlockHorizontal! * 2,
                         ),
-                      ),
-                      Icon(
-                        Icons.keyboard_arrow_up,
-                        size: SizeConfig.safeBlockVertical! * 4,
-                        color: Colors.white,
-                      ),
-                      const Text(
-                        'Tap on card to flip it',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                        child: SizedBox(
+                          width: SizeConfig.safeBlockHorizontal! * 82,
+                          child: FlipCard(
+                            direction: FlipDirection.HORIZONTAL,
+                            speed: 500,
+                            onFlipDone: (status) {
+                              print(status ? 'front' : 'back');
+                            },
+                            front: BusinessCardFront(
+                              index: index,
+                              enabled: true,
+                              favorite: true,
+                              cardNumber: '4111 1111 1111 1111',
+                              cardHolder: 'GOLDEN SKY',
+                              nextCardFunction: (index) {
+                                scrollTo(index == cards.length - 1
+                                    ? index
+                                    : index + 1);
+                              },
+                              previousCardFunction: (index) {
+                                scrollTo(index == 0 ? index : index - 1);
+                              },
+                            ),
+                            back: BusinessCardBack(
+                              enabled: true,
+                              favorite: true,
+                              cardNumber: 'XXXX-4321',
+                              cardHolder: 'GOLDEN SKY',
+                            ),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: SizeConfig.safeBlockVertical! * 1,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            height: SizeConfig.safeBlockVertical! * 6.5,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Available',
-                                  style: TextStyle(
-                                    fontSize: SizeConfig.safeBlockVertical! * 2,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  '\$ ${cards[currentCardIndex].available}',
-                                  style: TextStyle(
-                                    fontSize: SizeConfig.safeBlockVertical! * 3,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: SizeConfig.safeBlockVertical! * 6.5,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Limit',
-                                  style: TextStyle(
-                                    fontSize: SizeConfig.safeBlockVertical! * 2,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  '\$ ${cards[currentCardIndex].limit}',
-                                  style: TextStyle(
-                                    fontSize: SizeConfig.safeBlockVertical! * 3,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: SizeConfig.safeBlockVertical! * 1),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            height: SizeConfig.safeBlockVertical! * 6,
-                            width: SizeConfig.safeBlockHorizontal! * 68,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                                SizeConfig.safeBlockHorizontal! * 3,
-                              ),
-                              gradient: const LinearGradient(
-                                begin: Alignment.topRight,
-                                end: Alignment.bottomLeft,
-                                colors: [
-                                  Color.fromARGB(255, 31, 138, 209),
-                                  Color(0xffff4479),
-                                ],
-                                tileMode: TileMode.mirror,
-                              ),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Send money',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize:
-                                      SizeConfig.safeBlockVertical! * 2.25,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            height: SizeConfig.safeBlockVertical! * 6,
-                            width: SizeConfig.safeBlockHorizontal! * 12,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: LinearGradient(
-                                begin: Alignment.topRight,
-                                end: Alignment.bottomLeft,
-                                colors: [
-                                  Color(0xffff4479),
-                                  Color.fromARGB(255, 31, 138, 209),
-                                ],
-                                tileMode: TileMode.mirror,
-                              ),
-                            ),
-                            child: Center(
-                              child: Icon(
-                                Icons.add,
-                                color: Colors.white,
-                                size: SizeConfig.safeBlockVertical! * 3,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ),
-                // SizedBox(
-                //   height: SizeConfig.safeBlockVertical! * 20,
-                //   child: ListView.builder(
-                //     physics: const BouncingScrollPhysics(),
-                //     itemCount: cards[currentCardIndex].transactions.length * 3,
-                //     scrollDirection: Axis.vertical,
-                //     itemBuilder: (context, index) {
-                //       return Padding(
-                //         padding: const EdgeInsets.all(8.0),
-                //         child: Container(
-                //           color: Colors.red,
-                //           height: SizeConfig.safeBlockVertical! * 3,
-                //           width: SizeConfig.safeBlockHorizontal! * 5,
-                //         ),
-                //       );
-                //     },
-                //   ),
-                // )
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical! * 3,
+                  child: const Icon(
+                    Icons.keyboard_arrow_up,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical! * 2,
+                  child: const Text(
+                    'Tap on card to flip it',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: SizeConfig.safeBlockVertical! * 1,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.safeBlockHorizontal! * 3,
+                  ),
+                  child: SizedBox(
+                    height: SizeConfig.safeBlockVertical! * 6,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Available',
+                              style: TextStyle(
+                                fontSize: SizeConfig.safeBlockVertical! * 2,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '\$ ${cards[currentCardIndex].available}',
+                              style: TextStyle(
+                                fontSize: SizeConfig.safeBlockVertical! * 3,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Limit',
+                              style: TextStyle(
+                                fontSize: SizeConfig.safeBlockVertical! * 2,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '\$ ${cards[currentCardIndex].limit}',
+                              style: TextStyle(
+                                fontSize: SizeConfig.safeBlockVertical! * 3,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: SizeConfig.safeBlockVertical! * 1),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.safeBlockHorizontal! * 3,
+                  ),
+                  child: SizedBox(
+                    height: SizeConfig.safeBlockVertical! * 6,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: SizeConfig.safeBlockVertical! * 6,
+                          width: SizeConfig.safeBlockHorizontal! * 68,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              SizeConfig.safeBlockHorizontal! * 3,
+                            ),
+                            gradient: const LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Color.fromARGB(255, 31, 138, 209),
+                                Color(0xffff4479),
+                              ],
+                              tileMode: TileMode.mirror,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Send money',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: SizeConfig.safeBlockVertical! * 2.25,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: SizeConfig.safeBlockVertical! * 6,
+                          width: SizeConfig.safeBlockHorizontal! * 12,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Color(0xffff4479),
+                                Color.fromARGB(255, 31, 138, 209),
+                              ],
+                              tileMode: TileMode.mirror,
+                            ),
+                          ),
+                          child: Center(
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: SizeConfig.safeBlockVertical! * 3,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: SizeConfig.safeBlockVertical! * 2,
+                    ),
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemCount:
+                          cards[currentCardIndex].transactions.length * 3,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            color: Colors.red,
+                            height: SizeConfig.safeBlockVertical! * 3,
+                            width: SizeConfig.safeBlockHorizontal! * 5,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                )
               ],
             ),
           ),
