@@ -205,7 +205,7 @@ class _AdminHomeState extends State<AdminHome> {
           ),
         ),
         body: SizedBox(
-          height: SizeConfig.safeBlockVertical! * 100,
+          height: SizeConfig.safeBlockVertical! * 105,
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: SizeConfig.safeBlockHorizontal! * 3,
@@ -215,7 +215,7 @@ class _AdminHomeState extends State<AdminHome> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: SizeConfig.safeBlockVertical! * 34,
+                  height: SizeConfig.safeBlockVertical! * 32,
                   child: ScrollablePositionedList.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: cards.length,
@@ -262,75 +262,69 @@ class _AdminHomeState extends State<AdminHome> {
                     },
                   ),
                 ),
-                SizedBox(
-                  height: SizeConfig.safeBlockVertical! * 3,
-                  child: const Icon(
-                    Icons.keyboard_arrow_up,
+                Icon(
+                  Icons.keyboard_arrow_up,
+                  color: Colors.white,
+                  size: SizeConfig.safeBlockVertical! * 2,
+                ),
+                Text(
+                  'Tap on card to flip it',
+                  style: TextStyle(
                     color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: SizeConfig.safeBlockVertical! * 1.5,
                   ),
-                ),
-                SizedBox(
-                  height: SizeConfig.safeBlockVertical! * 2,
-                  child: const Text(
-                    'Tap on card to flip it',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: SizeConfig.safeBlockVertical! * 1,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: SizeConfig.safeBlockHorizontal! * 3,
                   ),
-                  child: SizedBox(
-                    height: SizeConfig.safeBlockVertical! * 6,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Available',
-                              style: TextStyle(
-                                fontSize: SizeConfig.safeBlockVertical! * 2,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '\$ ${cards[currentCardIndex].available}',
-                              style: TextStyle(
-                                fontSize: SizeConfig.safeBlockVertical! * 3,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Available',
+                        style: TextStyle(
+                          fontSize: SizeConfig.safeBlockVertical! * 2,
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 7, 86, 139),
                         ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Limit',
-                              style: TextStyle(
-                                fontSize: SizeConfig.safeBlockVertical! * 2,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '\$ ${cards[currentCardIndex].limit}',
-                              style: TextStyle(
-                                fontSize: SizeConfig.safeBlockVertical! * 3,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                      ),
+                      Text(
+                        'Limit',
+                        style: TextStyle(
+                          fontSize: SizeConfig.safeBlockVertical! * 2,
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 7, 86, 139),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: SizeConfig.safeBlockHorizontal! * 3,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '\$ ${cards[currentCardIndex].available}',
+                        style: TextStyle(
+                          fontSize: SizeConfig.safeBlockVertical! * 3,
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 7, 86, 139),
+                        ),
+                      ),
+                      Text(
+                        '\$ ${cards[currentCardIndex].limit}',
+                        style: TextStyle(
+                          fontSize: SizeConfig.safeBlockVertical! * 3,
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 7, 86, 139),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: SizeConfig.safeBlockVertical! * 1),
@@ -344,7 +338,6 @@ class _AdminHomeState extends State<AdminHome> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          height: SizeConfig.safeBlockVertical! * 6,
                           width: SizeConfig.safeBlockHorizontal! * 68,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
@@ -372,7 +365,6 @@ class _AdminHomeState extends State<AdminHome> {
                           ),
                         ),
                         Container(
-                          height: SizeConfig.safeBlockVertical! * 6,
                           width: SizeConfig.safeBlockHorizontal! * 12,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
