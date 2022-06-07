@@ -31,7 +31,7 @@ class _BusinessCardBackState extends State<BusinessCardBack> {
           height: SizeConfig.safeBlockVertical! * 2,
         ),
         Container(
-          height: SizeConfig.safeBlockVertical! * 27,
+          height: SizeConfig.safeBlockVertical! * 28,
           decoration: BoxDecoration(
             gradient: const LinearGradient(
               begin: Alignment.topRight,
@@ -99,7 +99,7 @@ class _BusinessCardBackState extends State<BusinessCardBack> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'XXXX XXXX XXXX XXXX',
+                        widget.cardNumber,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: SizeConfig.safeBlockVertical! * 2.25,

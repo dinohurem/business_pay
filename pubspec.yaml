@@ -20,6 +20,7 @@ dependencies:
   intl: ^0.17.0
   flip_card: ^0.6.0
   scrollable_positioned_list: ^0.3.2
+  circle_checkbox: ^0.0.2+1
 
 dev_dependencies:
   flutter_test:

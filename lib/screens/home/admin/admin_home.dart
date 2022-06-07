@@ -5,7 +5,9 @@ import 'package:business_pay/models/transaction.dart';
 import 'package:business_pay/models/user.dart';
 import 'package:business_pay/screens/home/admin/business_card_back.dart';
 import 'package:business_pay/screens/home/admin/business_card_front.dart';
+import 'package:business_pay/screens/home/admin/create_card.dart';
 import 'package:business_pay/screens/home/admin/profile.dart';
+import 'package:business_pay/screens/home/admin/send_money.dart';
 import 'package:business_pay/screens/home/admin/transaction_record.dart';
 import 'package:business_pay/size_config.dart';
 import 'package:flip_card/flip_card.dart';
@@ -224,7 +226,7 @@ class _AdminHomeState extends State<AdminHome> {
                   horizontal: SizeConfig.safeBlockHorizontal! * 3,
                 ),
                 child: SizedBox(
-                  height: SizeConfig.safeBlockVertical! * 34,
+                  height: SizeConfig.safeBlockVertical! * 32,
                   child: ScrollablePositionedList.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: cards.length,
@@ -246,10 +248,10 @@ class _AdminHomeState extends State<AdminHome> {
                             },
                             front: BusinessCardFront(
                               index: index,
-                              enabled: true,
-                              favorite: true,
-                              cardNumber: '4111 1111 1111 1111',
-                              cardHolder: 'GOLDEN SKY',
+                              enabled: cards[index].enabled,
+                              favorite: cards[index].favorite,
+                              cardNumber: cards[index].cardNumber,
+                              cardHolder: cards[index].cardHolder,
                               nextCardFunction: (index) {
                                 scrollTo(index == cards.length - 1
                                     ? index
@@ -260,10 +262,10 @@ class _AdminHomeState extends State<AdminHome> {
                               },
                             ),
                             back: BusinessCardBack(
-                              enabled: true,
-                              favorite: true,
-                              cardNumber: 'XXXX-4321',
-                              cardHolder: 'GOLDEN SKY',
+                              enabled: cards[index].enabled,
+                              favorite: cards[index].favorite,
+                              cardNumber: cards[index].cardNumber,
+                              cardHolder: cards[index].cardHolder,
                             ),
                           ),
                         ),
@@ -347,52 +349,72 @@ class _AdminHomeState extends State<AdminHome> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        width: SizeConfig.safeBlockHorizontal! * 68,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            SizeConfig.safeBlockHorizontal! * 3,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SendMoney(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: SizeConfig.safeBlockHorizontal! * 68,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              SizeConfig.safeBlockHorizontal! * 3,
+                            ),
+                            gradient: const LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Color.fromARGB(255, 31, 138, 209),
+                                Color(0xffff4479),
+                              ],
+                              tileMode: TileMode.mirror,
+                            ),
                           ),
-                          gradient: const LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color.fromARGB(255, 31, 138, 209),
-                              Color(0xffff4479),
-                            ],
-                            tileMode: TileMode.mirror,
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            'Send money',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: SizeConfig.safeBlockVertical! * 2.25,
+                          child: Center(
+                            child: Text(
+                              'Send money',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: SizeConfig.safeBlockVertical! * 2.25,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      Container(
-                        width: SizeConfig.safeBlockHorizontal! * 12,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
-                            colors: [
-                              Color(0xffff4479),
-                              Color.fromARGB(255, 31, 138, 209),
-                            ],
-                            tileMode: TileMode.mirror,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CreateCard(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: SizeConfig.safeBlockHorizontal! * 12,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Color(0xffff4479),
+                                Color.fromARGB(255, 31, 138, 209),
+                              ],
+                              tileMode: TileMode.mirror,
+                            ),
                           ),
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: SizeConfig.safeBlockVertical! * 3,
+                          child: Center(
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: SizeConfig.safeBlockVertical! * 3,
+                            ),
                           ),
                         ),
                       ),
@@ -406,7 +428,15 @@ class _AdminHomeState extends State<AdminHome> {
                     top: SizeConfig.safeBlockVertical! * 2,
                   ),
                   child: Container(
-                    color: Colors.white,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(
+                            SizeConfig.safeBlockHorizontal! * 8),
+                        topRight: Radius.circular(
+                            SizeConfig.safeBlockHorizontal! * 8),
+                      ),
+                    ),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
                       child: Padding(

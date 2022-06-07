@@ -50,7 +50,7 @@ class _BusinessCardFrontState extends State<BusinessCardFront> {
           height: SizeConfig.safeBlockVertical! * 2,
         ),
         Container(
-          height: SizeConfig.safeBlockVertical! * 27,
+          height: SizeConfig.safeBlockVertical! * 28,
           decoration: BoxDecoration(
             gradient: const LinearGradient(
               begin: Alignment.topRight,
@@ -87,6 +87,7 @@ class _BusinessCardFrontState extends State<BusinessCardFront> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CupertinoSwitch(
+                        activeColor: Colors.lightBlue,
                         value: widget.enabled,
                         onChanged: _toggleCard,
                       ),
